@@ -1,0 +1,39 @@
+{
+    "libs" : [
+          "bower_components/momentjs/moment.js"
+        , "bower_components/jquery/dist/jquery.js"
+        , "bower_components/jquery-ui/ui/minified/jquery-ui.min.js"
+        , "bower_components/angular/angular.js"
+        , "bower_components/angular-route/angular-route.js"
+        , "bower_components/angular-resource/angular-resource.js"
+        , "bower_components/angular-animate/angular-animate.js"
+        , "bower_components/angular-sanitize/angular-sanitize.js"
+        , "bower_components/angular-ui-router/release/angular-ui-router.js"
+        , "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+        , "bower_components/select2/select2.js"
+        , "bower_components/angular-ui-select2/src/select2.js"
+        , "bower_components/ng-tags-input/ng-tags-input.js"
+        , "bower_components/angular-ui-calendar/src/calendar.js"
+        , "bower_components/fullcalendar/fullcalendar.js"
+        , "bower_components/fullcalendar/gcal.js"
+        , "bower_components/angular-ui-map/ui-map.js"
+        , "bower_components/angular-ui-utils/ui-utils.js"
+        , "bower_components/angular-xeditable/dist/js/xeditable.js"
+        , "bower_components/checklist-model/checklist-model.js"
+	    , "bower_components/underscore/underscore.js"
+        , "src/libs/js/bootstrap-colorpicker-module.js"
+        , "src/libs/js/google-maps-styled-marker.js"
+        , "src/libs/js/google-maps-infobox.js"
+        , "src/libs/js/d3.js"
+        , "src/libs/js/dimple.v1.1.5.min.js"
+    ],
+
+    "libsCss" : [
+        "bower_components/fullcalendar/fullcalendar.css"
+        , "bower_components/select2/select2.css"
+        , "bower_components/ng-tags-input/ng-tags-input.min.css"
+        , "bower_components/font-awesome-bower/css/font-awesome.css"
+        , "bower_components/angular-xeditable/dist/css/xeditable.css"
+        , "src/libs/css/colorpicker.css"
+    ]
+}
