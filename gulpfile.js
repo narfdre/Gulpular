@@ -9,7 +9,6 @@ var templateCache   = require('gulp-angular-templatecache');
 var flatten         = require('gulp-flatten');
 var minifyHtml      = require('gulp-minify-html');
 var minifyCss       = require('gulp-minify-css');
-var filesize 	    = require('gulp-filesize');
 var config          = require('./gulp-config.json');
 
 gulp.task('scripts', function() {
@@ -17,11 +16,9 @@ gulp.task('scripts', function() {
   .pipe(ngAnnotate())
   .pipe(concat('all.js'))
   .pipe(gulp.dest('public/scripts'))
-  .pipe(filesize())
   .pipe(rename('all.min.js'))
   .pipe(uglify({ outSourceMaps: true }))
-  .pipe(gulp.dest('public/scripts'))
-  .pipe(filesize());
+  .pipe(gulp.dest('public/scripts'));
 });
 
 //gulp-copy
@@ -32,11 +29,9 @@ gulp.task('copy', function(){
   gulp.src(config.libs)
     .pipe(concat('libs.js'))
     .pipe(gulp.dest('public/scripts'))
-    .pipe(filesize())
     .pipe(rename('libs.min.js'))
     .pipe(uglify({outSourceMaps: true }))
-    .pipe(gulp.dest('public/scripts'))
-    .pipe(filesize());
+    .pipe(gulp.dest('public/scripts'));
 
   //TODO: not sure we need this now
   gulp.src("bower_components/**/*.js.map")
@@ -46,11 +41,9 @@ gulp.task('copy', function(){
   gulp.src(config.libsCss)
     .pipe(concat('libs.css'))
     .pipe(gulp.dest('public/css'))
-    .pipe(filesize())
     .pipe(rename('libs.min.css'))
     .pipe(minifyCss())
-    .pipe(gulp.dest('public/css'))
-    .pipe(filesize());
+    .pipe(gulp.dest('public/css'));
 
   //Move fonts
   gulp.src('bower_components/font-awesome-bower/fonts/*')
@@ -66,11 +59,9 @@ gulp.task('less', function () {
   gulp.src('src/less/app.less')
     .pipe(less())
     .pipe(gulp.dest('public/css'))
-    .pipe(filesize())
     .pipe(rename('app.min.css'))
     .pipe(minifyCss())
-    .pipe(gulp.dest('public/css'))
-    .pipe(filesize());
+    .pipe(gulp.dest('public/css'));
 });
 
 //gulp-html2js
@@ -87,33 +78,19 @@ gulp.task('html2js', function(){
     }))
     .pipe(concat('templates.js'))
     .pipe(gulp.dest('public/templates'))
-    .pipe(filesize())
     .pipe(rename('templates.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('public/templates'))
-    .pipe(filesize());
+    .pipe(gulp.dest('public/templates'));
 });
 
 gulp.task('prepare', function() {
     bower();
 });
 
-gulp.task('dev', function(){
-  gulp.run('scripts', 'html2js', 'copy', 'less');
-
-  gulp.watch('src/scripts/**/*.js', function() {
-    gulp.run('scripts');
-  });
-
-  gulp.watch('src/scripts/**/*.tpl.html', function(){
-    gulp.run('html2js');
-  });
-
-  gulp.watch('src/less/**', function() {
-    gulp.run('less');
-  });
+gulp.task('dev', ['scripts', 'html2js', 'copy', 'less'], function(){
+  gulp.watch('src/scripts/**/*.js', ['scripts']);
+  gulp.watch('src/scripts/**/*.tpl.html', ['html2js']);
+  gulp.watch('src/less/**', ['less']);
 });
 
-gulp.task('build', function(){
-  gulp.run('scripts', 'html2js', 'copy', 'less');
-});
+gulp.task('build', ['scripts', 'html2js', 'copy', 'less']);
